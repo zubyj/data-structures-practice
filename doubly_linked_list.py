@@ -1,3 +1,12 @@
+'''
+    TODO
+    add corner cases for insert delete
+    add insert & del at given data pt
+
+    https://stackabuse.com/doubly-linked-list-with-python-examples/
+'''
+
+
 class Node:
     def __init__(self, data=None, next = None, prev = None):
         self.data = data
@@ -48,13 +57,29 @@ class DLinkedList:
     def insertAfterNode(self, node, newNode):
         return
 
+    def delHead(self):
+        newHead = self.head.next
+        self.head = newHead
+        newHead.prev = None
+
+    def delTail(self):
+        newTail = self.tail.prev
+        self.tail = newTail
+        newTail.next = None
+
+        
+
+# Testing the code 
 
 list = DLinkedList()
-# list.insertAtHead(Node("Lebron"))
-# list.insertAtHead(Node("Durant"))
-# list.insertAtTail(Node("Curry"))
-# list.insertAtHead(Node("Jordan"))
+list.insertAtHead(Node("Lebron"))
+list.insertAtHead(Node("Durant"))
+list.insertAtTail(Node("Curry"))
+list.insertAtHead(Node("Jordan"))
 list.insertAtTail(Node("Johnson"))
+list.delHead()
+list.delHead()
+list.delTail()
 list.printlist()
 
 
