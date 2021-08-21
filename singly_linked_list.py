@@ -10,6 +10,7 @@ class SLinkedList:
 
 
     def printlist(self):
+        print("Printing List")
         curr = self.head
         while curr is not None:
             print(curr.data)
@@ -37,7 +38,22 @@ class SLinkedList:
 
 # Function to remove node
     def remove(self, rem_key):
-        return
+        #removing at head
+        head = self.head
+        if head.data == rem_key:
+            self.head = head.next
+            return
+
+        # remove from rest
+        curr = self.head
+        while curr.next.data != rem_key:
+            curr = curr.next
+            if curr.next == None:
+                break
+        if (curr.next.data == rem_key):
+            curr.next = curr.next.next
+            return
+
 
 list1 = SLinkedList()
 list1.head = Node("Zuby")
@@ -55,3 +71,10 @@ list1.inserthead(Node("Saima"))
 
 list1.insert(third, Node("Mummy"))
 list1.printlist()
+
+list1.remove("Zuby")
+list1.printlist()
+
+list1.remove("Saima")
+list1.printlist()
+
