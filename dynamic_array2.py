@@ -3,11 +3,11 @@ import ctypes
 
 class DynamicArray(object):
 
-    # Create empty array of initial size 2
     def __init__(self, size=2):
-        self.size = size
+        self.size = size # Total size of array
+        self.n = 0 # elements in array.
+        # Create empty array of initial size 2
         self.arr = (ctypes.py_object * self.size)()
-        self.n = 0
 
 
     # Check if array is full
@@ -59,6 +59,21 @@ class DynamicArray(object):
         self.n += 1
 
 
+    # Delete element at index
+    def deleteAt(self, index):
+        # Check if valid input
+        if (index < 0 or index >= self.n):
+            print('Error: index ' + str(index) + ' out of bounds')
+            return
+        # Corner case (remove from tail)
+        if (index == self.n-1):
+            self.arr[index] = 0
+        # General case
+        for i in range(index, self.n-1):
+            self.arr[i] = self.arr[i+1]
+        self.n -= 1
+
+
     # Print all elements in array.
     def print(self):
         print('total size : ' + str(self.size))
@@ -66,7 +81,7 @@ class DynamicArray(object):
             print(self.arr[i])
 
 
-def main():
+def test1():
     da = DynamicArray()
     da.append('1')
     da.append('2')
@@ -81,10 +96,13 @@ def main():
     da.insertAt(2, '3')
     da.insertAt(10, '3')
     da.print()
+    da.deleteAt(1)
+    da.print()
+
+
+def main():
+    test1()
 
 
 if __name__ == "__main__":
     main()
-
-
-        
